@@ -1,0 +1,32 @@
+.target{
+    height: fit-content;
+}
+.target_heading{
+  
+color: beige;
+background-color: rgb(36, 36, 48);
+}
+
+.target_heading:last-child{
+    border-top-right-radius: .5rem;
+}
+
+.target_heading:first-child{
+border-top-left-radius: .5rem;}
+
+
+
+
+.rows td,
+.rows th  {
+    padding: .5rem 3rem;
+  }
+
+  .rows tr:nth-child(even) {
+    background-color: #D6EEEE;
+    white-space: nowrap;
+
+  }
+
+  
+  

@@ -1,0 +1,43 @@
+.selector{
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    gap: 1rem;
+
+}
+
+.selector label{
+    margin-right: 1rem;
+}
+
+
+.navigation button:first-child {
+   
+   margin-right:1rem ;
+}
+
+.selector input{
+    width: fit-content;
+    outline: none;
+    border: none;
+    border-bottom:solid .1rem rgb(95, 88, 88);  ;
+    margin-right:  4rem;
+    
+    height: 100%;
+}
+
+
+
+.form{
+    display: flex;
+
+}
+
+.pageNumber{
+    padding-top:.7rem;
+    font-size: .8rem;
+    
+}
+
+
+
