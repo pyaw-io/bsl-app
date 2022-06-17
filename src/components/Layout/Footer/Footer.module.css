@@ -1,3 +1,7 @@
 .footer{
     color: rgb(121, 119, 119);
+    height: 5%;
+    display: flex;
+    padding: 1rem ;
+    justify-content: center;
 }

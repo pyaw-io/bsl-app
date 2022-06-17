@@ -1,4 +1,27 @@
 .header{
+    height: 5%;
     display: flex;
-    justify-content: center;
+    padding: 1rem ;
+    justify-content: space-between;
+    align-items: center;
 }
+.header_menu{
+    margin-right: 4rem;
+    height:  100%;
+    width: 25%;
+    display: flex;
+    
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.header_menu  button {
+  
+    font-size: small;
+    padding: 0.1rem;
+    width: 5.5rem;
+    height: 1.6rem;
+  
+   
+  }

@@ -1,10 +1,8 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { dataset, readingDates } from '../../features/readingSlice'
-import {random_rgb} from '../../utils'
-import classes from './Graph.module.css'
-
-
+import {React,Fragment,useEffect ,useState} from "react";
+import { useSelector } from "react-redux";
+import { dataset, readingDates } from "../../features/readingSlice";
+import { random_rgb } from "../../utils";
+import classes from "./Graph.module.css";
 
 import {
   Chart as ChartJS,
@@ -15,9 +13,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
+} from "chart.js";
 
-import { Line } from 'react-chartjs-2';
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -29,67 +27,76 @@ ChartJS.register(
   Legend
 );
 
-
-
-
-
-const Graph = () => {
-    const readingData = useSelector(dataset)
-    const labels =useSelector(readingDates)
-    let dataSet =[]
-
-    const options = {
+const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top' ,
+      position: "right",
     },
     title: {
       display: true,
-      text: 'Blood Sugar Levels Chart',
+      text: "Blood Sugar Levels Chart",
     },
   },
 };
-    
-    
-    
-
-    readingData.map((datasetObj) => {
-        const data = Object.values(datasetObj).flat()
-        const label = Object.keys(datasetObj).flat()
-        const colour = random_rgb()
-        
-
-        dataSet.push( {
-            label: label,
-            data: data,
-            borderColor: colour,
-            backgroundColor: colour,
-            })
 
 
+const Graph = () => {
+  const readingData = useSelector(dataset)
+  const [emptyData,setEmptyData] = useState(false);
+  const labels = useSelector(readingDates);
+  const colours = ['rgb(254, 217, 2)','rgb(4, 3, 255)','rgb(2, 227, 241)','rgb(162, 63, 1)','rgb(202, 92, 241)','rgb(255, 160, 2)','rgb(19, 189, 112)'
+]
+  let dataSet = [];
 
-    })
+  useEffect(() => {
 
-
-
-    const data = {
-    labels,
-    datasets: dataSet
-    ,
-    };
-
-
-
-
-
-
-    const graphHandler = () =>{
-        console.log(data);
+    if(readingData.length > 0){
+      setEmptyData(true)
+    }else{
+      setEmptyData(false)
     }
-  return <div className={classes.graph}>
-             <Line className={classes.line} onClick={graphHandler} options={options} data={data} />
-      </div>;
-}
 
-export default Graph
+  },[readingData])
+
+
+  
+
+  readingData.map((datasetObj,i) => {
+    const data = Object.values(datasetObj).flat();
+    const label = Object.keys(datasetObj).flat();
+    dataSet.push({
+      label: label,
+      data: data,
+      borderColor: colours[i]? colours[i] : random_rgb(),
+      backgroundColor: colours[i]? colours[i] : random_rgb(),
+    });
+  });
+
+  const data = {
+    labels,
+    datasets: dataSet,
+  };
+
+  const graphHandler = () => {
+   
+  };
+  return (
+    <Fragment>{
+      emptyData?<div className={classes.graph}>
+      <Line
+        className={classes.line}
+        onClick={graphHandler}
+        options={options}
+        data={data}
+      />
+    </div> : <p className={classes.message}>Record more than two days to show graph</p>
+      
+      
+      }
+    
+    </Fragment>
+  );
+};
+
+export default Graph;

@@ -1,198 +1,81 @@
-import React, { Fragment, useEffect } from 'react';
-import Graph from './components/Graph/Graph';
-import Footer from './components/Layout/Footer/Footer';
-import History from './components/history/History/History';
-
-
-import Header from './components/Layout/Header/Header';
-import Records from './components/Measure/Records'
-import Target from './components/Target/Target';
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Footer from './components/layout/Footer/Footer';
+import { onAuthStateChanged } from "firebase/auth";
+import Header from './components/layout/Header/Header';
+import { auth} from './firebase';
 import { useDispatch } from 'react-redux';
-import { setTarget, setReadings } from './features/readingSlice';
+import Account from './pages/Account';
+import CreateUser from './pages/CreateUser';
+import Auth from './pages/Auth';
+import Terms from './pages/Terms';
+import {  setToken } from './features/authSlice';
+import Loading from './components/ui/Loading';
 
 
-
-
-const targets = {
- Before_breakfast : '-',
- After_Breakfast : '-',
- After_Lunch : '-',
- After_Dinner : '-',
-};
-
-const readings = []
-
-const reading = [
-  {
-    date: '2022-04-15',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-
-  {
-    date: '2022-04-16',
-    Before_breakfast: 9,
-    After_Breakfast: 5,
-    After_Lunch: 5,
-    After_Dinner: 9,
-  },
-  {
-    date: '2022-04-17',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-18',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-19',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: .9,
-  },
-  {
-    date: '2022-04-20',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 59,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-21',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-22',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-23',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-24',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-25',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-26',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-27',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5,
-  },
-  {
-    date: '2022-04-28',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-29',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-30',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5.9,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-04-31',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 59,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-05-01',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 5,
-    After_Dinner: 5.9,
-  },
-  {
-    date: '2022-05-02',
-    Before_breakfast: 5.9,
-    After_Breakfast: 5.9,
-    After_Lunch: 99,
-    After_Dinner: 5.9,
-  },
-];
 
 
 
 function App(props) {
-
   const dispatch = useDispatch()
+  const [loading,setLoading] = useState(true)
+  const [isLoggedIn,setIsLoggedIn] = useState(true)
 
-
-
-  useEffect(() => {
-    dispatch(setReadings(readings))
-    dispatch(setTarget(targets))
-  },[])
-
-
+ 
+     onAuthStateChanged(auth, (user) => {
+      if (user) {    
+     
+        const uid = user.uid;
+        dispatch(setToken({token : uid}))
+        setIsLoggedIn(true)
+        
+        // ...
+      } else {
+        setIsLoggedIn(false)
+       
+      }
+      setLoading(false)
+    })
    
 
-
-
-
   
   
+
 
   return (
     
-   <Fragment>
-      <Header/>
+   <div className='app'>
+      
+      <header>
+        
+
+        {!isLoggedIn?'': <Header/>}
+      </header>
+      {loading? <Loading /> : 
+      
       <main>
-        <Graph/>
-        <Records />
-        <History/> 
-        <Target/>
+        <Routes>
+          
+          
+          {!isLoggedIn && <Route path='/' element={<Auth/>}/>}
+          {isLoggedIn && <Route path='/welcome' element={<CreateUser/>} />}
+
+          {isLoggedIn && <Route path='/account' element={<Account/>}/>}
+          {isLoggedIn && <Route path='*' element={<Account/>}/>}
+          {!isLoggedIn &&  <Route path='*' element={<Auth/>}/>}
+          <Route path='/terms' element={<Terms/>}/>
+         
+      
+         </Routes>
       </main>
-      <Footer/>
-      </Fragment>
+      }
+
+      <footer>
+        <Footer/>
+      </footer>
+     
+      
+      </div>
   
     
   );

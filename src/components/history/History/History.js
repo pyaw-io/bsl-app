@@ -1,9 +1,11 @@
-import { useState} from "react";
+import { useState,useEffect,Fragment} from "react";
 import DateSelector from "../Date/DateSelector";
-
-import classes from "./History.module.css";
 import DisplayRecords from "../Table/DisplayRecords";
 import RecordHeader from "../Table/RecordHeader";
+import { useSelector } from "react-redux";
+import { allReadings } from "../../../features/readingSlice";
+import classes from "./History.module.css";
+
 
 const History = () => {
 
@@ -11,6 +13,17 @@ const History = () => {
   const [selectedDate,setSelectedDate]= useState()
   const [registerClick,setRegisterClick] = useState(true)
   const [buttonClicked,setButtonClicked] = useState()
+  const readings = useSelector(allReadings)
+  const [emptyData,setEmptyData] = useState(false);
+
+  useEffect(() => {
+    if(readings.length > 0){
+      setEmptyData(true)
+    }else{
+      setEmptyData(false)
+    }
+
+  },[readings])
   
 
   const navigateHandler =(event) => {
@@ -28,7 +41,9 @@ const History = () => {
   
 
   return (
-    <div className={classes.history}>
+
+    <Fragment>
+      {emptyData? <div className={classes.history}>
       <table>
         <tbody>
           <RecordHeader></RecordHeader>
@@ -36,7 +51,11 @@ const History = () => {
         </tbody>
       </table>
       <DateSelector  ChosenDate={chosenDateHandler} Navigate={navigateHandler}></DateSelector>
-    </div>
+    </div>:  <p className={classes.message}>No record found</p>}
+
+
+    </Fragment>
+   
   );
 };
 

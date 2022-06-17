@@ -1,6 +1,17 @@
-body {
+*{
+  box-sizing: border-box;
   margin: 0;
-  font-family:Verdana, Geneva, Tahoma, sans-serif
+  padding: 0;
+}
+
+
+body {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  overflow-x: hidden;
+  font-size: small;
+  height: fit-content;
+  
+ 
 }
 
 code {
@@ -8,11 +19,24 @@ code {
     monospace;
 }
 
+
+
 main{
-  display: grid;
-  grid-template-columns: 65% 30%;
-  gap: 4rem 2rem;
-  margin: 2rem;
+  height: 100vh;
+  width: 100vw;
+ 
 }
+
+input{
+  border: solid 1px rgb(90, 89, 89);
+  border-radius: 5px;
+  text-align: center;
+  height: 1.5rem;
+  
+
+  
+}
+
+
 
 

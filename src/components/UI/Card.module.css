@@ -1,0 +1,7 @@
+.card{
+    /* border: solid 10px rgb(98, 218, 43); */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}

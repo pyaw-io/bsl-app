@@ -1,8 +1,15 @@
 .input_form{
-    height: 100%;
-    width: 100%;
+    height: 90%;
+    margin-bottom: .7rem;
+    width: fit-content;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
+
+form > .input_button, .t_button,input, select{
+    width: 17rem;
+
+}
+

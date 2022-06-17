@@ -2,21 +2,20 @@ import {useState,useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addReading } from '../../features/readingSlice'
 import { target } from '../../features/readingSlice'
-
+import Button from '../ui/Button'
 import classes from './Records.module.css'
 
 
 
-  
 
 
 //get current date
 const fullDate = new Date()
 const date = fullDate.getDate()
-const month = fullDate.getMonth()
+const month = fullDate.getMonth() + 1
 const year = fullDate.getFullYear()
 
-const dateString = `${year}-0${month + 1}-${date}`
+const dateString = `${(year.toString()).padStart(2, '0')}-${(month.toString()).padStart(2, '0')}-${(date.toString()).padStart(2, '0')}`
 
 
 
@@ -28,10 +27,7 @@ const Records = (props) => {
     const periodInput = useRef()
     const dateInput = useRef()
 
-    
-
-
-   
+  
   
 
     const recordPeriods = Object.keys(initialtarget).map((data,index) => {
@@ -43,22 +39,17 @@ const Records = (props) => {
 
     const formSubmitHandler = (event) => {       
             event.preventDefault()
-
-           
-
-      
-
             const reading =   Number(readingInput.current.value)
             const  period = (periodInput.current.value)
             const selectedDate = dateInput.current.value
     
-            if( reading >= 99  || isNaN(reading)  || reading == ''){
+            if( reading >= 99  || isNaN(reading)  || reading === ''){
                 setInputIsValid(false)
                 return
             }
 
             setInputIsValid(true)
-
+           
             const measuredInput = {
                 date:selectedDate ? selectedDate: dateString ,
                 slot: period,
@@ -89,8 +80,8 @@ const Records = (props) => {
                 {recordPeriods}
             </select>
             </div>
+            <Button type='submit'>Submit</Button>
             
-            <button>Submit</button>
 
             
         </form>

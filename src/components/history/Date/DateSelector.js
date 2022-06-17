@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { allReadings } from "../../../features/readingSlice";
-import Button from "../../UI/Button";
+import Button from "../../ui/Button";
 import { useSelector } from "react-redux";
 
 import classes from "./DateSelector.module.css";
@@ -67,24 +67,27 @@ const DateSelector = (props) => {
   };
 
   return (
-    <div className={classes.selector}>
-      <form className={classes.form} onSubmit={selectDateHandler}>
-        <div>
+    <div>
+      <form className={classes.selector} onSubmit={selectDateHandler}>
+        
+        <div className={classes.date_input}>
           <label>Date</label>
           <input type="date" ref={dateInput} name="date" />
         </div>
-        <Button>Search</Button>
-      </form>
+        <Button type='submit' >Search</Button>
+    
 
-      <div className={classes.navigation}>
+      
         <Button onClick={navigationButtonHandler} value="previous">
           Prev
         </Button>
-        <Button onClick={navigationButtonHandler} value="next">
+        <Button onClick={navigationButtonHandler} value="next" >
           Next
         </Button>
-      </div>
-      <div className={classes.pageNumber}>{pageNumber}</div>
+        <div className={classes.pageNumber}>{pageNumber}</div>
+        
+        </form>
+     
     </div>
   );
 };

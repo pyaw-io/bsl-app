@@ -1,9 +1,32 @@
 import React from 'react'
 import classes from './Header.module.css'
+import {logout} from '../../../features/authSlice'
+import { useDispatch } from 'react-redux'
+import Button from '../../ui/Button'
+import { auth } from '../../../firebase'
 
 const Header = () => {
+    const dispatch =  useDispatch()
+
+        const logoutHandler = () => {
+            auth.signOut().then(
+               dispatch(logout()) 
+            )
+            
+                }
+
     return (
-        <h1 className={classes.header}> Welcome, Jamila</h1>
+
+
+        <div className={classes.header}>
+            <h1>BSL</h1>
+            <div className={classes.header_menu}>
+            
+                <Button>Profile</Button>
+                <Button>Account</Button>
+                <Button onClick={logoutHandler}>Logout</Button>
+            </div>
+        </div>
 
 
     )
