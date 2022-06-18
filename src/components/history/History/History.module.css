@@ -12,3 +12,10 @@
     text-align: center;
 
 }
+
+.tbody tr:nth-child(even) {
+    background-color: #D6EEEE;
+    white-space: nowrap;
+  
+  }
+

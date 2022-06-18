@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, } from "react";
 import { auth, db } from "../../firebase";
 import { setTarget, setReadings } from "../../features/readingSlice";
 import {  getDoc, doc, updateDoc } from "firebase/firestore";
@@ -48,7 +48,6 @@ function Account() {
   //
  
   useEffect(() => {
-    console.log(readings.length);
 
     if(readings.length < 1){
       return
@@ -64,12 +63,11 @@ function Account() {
   }, [readings]);
 
   useEffect(() => {
-
-    console.log(Object.keys(target).length);
-
-    if(Object.keys(target).length < 1){
-      return
-    }
+      
+   if(Object.values(targets).flat().every(el => el == 0)){
+    return
+   }
+   
     const userRef = doc(db, "users",  `${auth.currentUser.uid}`); 
 
     updateDoc(userRef, {

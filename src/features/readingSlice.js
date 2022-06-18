@@ -13,14 +13,16 @@ export const readingSlice = createSlice({
   initialState,
   reducers: {
     setReadings: (state, { payload }) => {
+      // console.log(payload);
       let readingKeys;
       let initialDataset = [];
 
       const datesArray = payload.map((reading) => reading.date.slice(-5));
 
       if (payload.length > 0) {
-        readingKeys = Object.keys(payload[0]);
-        readingKeys.shift();
+        readingKeys = Object.keys(payload[0]).filter(element => element !== 'date')
+        // console.log(readingKeys);
+       
 
         readingKeys.forEach((period) => {
           initialDataset.push(getSavedReadings(payload, period));
@@ -217,7 +219,7 @@ export const readingSlice = createSlice({
         return
       } else {
         //if its a new date, addit to the date array and sorl all the date correctly from oldest to newest
-        const dataArray = [...state.readingDates, payload.date].sort(function (
+        const dataArray = [...state.readingDates, (payload.date).slice(-5)].sort(function (
           a,
           b
         ) {

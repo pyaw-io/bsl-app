@@ -1,28 +1,26 @@
 import { Fragment, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { recordsPerPage } from "../../../utils";
-import { allReadings } from '../../../features/readingSlice';
+import { allReadings,dataset, readingDates } from '../../../features/readingSlice';
 import classes from "./DisplayRecords.module.css";
 
 
 const DisplayRecords = (props) => {
-  const readings = useSelector(allReadings)
-  const [userRecord,setUserRecord] = useState(readings);
+  const dataSet = useSelector(dataset)
+  const allDates =useSelector(readingDates)
   const [recordDisplayed, setrecordDisplayed] = useState([]);
   const [currentPageIndex, setCurrentPageIndex] = useState();
   const selectedDate = props.SelectedDate;
   const registerClick = props.OnNavigate
   const clickedButton = props.NavButtonClicked
-
-  useEffect(() => {
-    setUserRecord(readings)
-  },[readings])
-
+  const userRecord =  dataSet.filter(element => Object.keys(element)  != 'date')
+  // console.log(userRecord)
   
-
 
   //function to slice portion of  record to display
   const slicedRecords = (startIndex, endIndex) => {
+
+    // const allRecords =  dataSet.filter(element => Object.keys(element)  !== 'date');
     const slicedrecord = userRecord.slice(startIndex, endIndex);
 
     setCurrentPageIndex([+startIndex,+endIndex])
@@ -32,14 +30,21 @@ const DisplayRecords = (props) => {
 
   //display last page
   useEffect(() => {
+    if(!dataSet){
+      return
+    }
+    
+
     const startIndex = userRecord.length - recordsPerPage
     const endIndex = userRecord.length
+
+    console.log(startIndex,endIndex);
    
     setrecordDisplayed(slicedRecords(startIndex,endIndex))
-  },[userRecord])
+  },[dataSet])
 
 
-  //function for navigating through records
+  // function for navigating through records
   useEffect( () => {
 
 
@@ -107,19 +112,25 @@ const DisplayRecords = (props) => {
     }
   }, [selectedDate]);
 
+// console.log(recordDisplayed);
+
 
 
 
 
   return (
     <Fragment>
+      <tr className={classes.header}>
+      <th>DATE</th>
+      {allDates.flat().map((data, index) => (
+        <td key={index}>{data.replace('-','/')}</td>
+      ))}
+    </tr>
       {recordDisplayed.map((record, index) => {
         return (
           <tr className={classes.data} key={index}>
-            <th>{record.date.slice(5).replace("-", "/")}</th>
-            {Object.values(record)
-              .slice(1)
-              .map((data, index) => {
+            <th>{Object.keys(record)}</th>
+            {Object.values(record).flat().map((data, index) => {
                 return <td key={index}>{data}</td>;
               })}
           </tr>

@@ -1,8 +1,7 @@
 .data{
-    width: 9.5%;
-    display: inline-flex;
-    flex-direction: column;
-    clear: both;
+    width: 2%;
+    /* display: inline-flex; */
+    /* flex-direction: column; */
     border-left: solid 2px beige;
     
 }
@@ -10,30 +9,68 @@
 .data td{
     padding: .5rem;
     text-align: center;
+    /* outline: solid 1px red ; */
 }
 
 .data  th{
    
-    display: flex;
+    /* display: flex;
     min-height: 2rem;
     justify-content: center;
     align-items: center;
     text-align: center;
     background-color: rgb(36, 36, 48);
     color: beige;
-    font-size: small;
+    font-size: small; */
     
 
 }
 
 .data td:nth-child(even) {
-    background-color: #D6EEEE;
-    white-space: nowrap;
+    /* background-color: #D6EEEE;
+    white-space: nowrap; */
   
   }
 
   .data:last-child  th{
-      border-top-right-radius: .5rem;
+      /* border-top-right-radius: .5rem; */
   }
+
+
+
+
+ .header > td{
+  
+    padding: .2rem;
+    text-align: center;
+    white-space: nowrap;
+    background-color: rgb(36, 36, 48);
+    color: rgb(245, 245, 220);
+
+}
+
+
+.header  th{
+    display: flex;
+    min-height: 2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap;
+    background-color: rgb(36, 36, 48);
+    border-top-left-radius: 0.5rem;
+    color: rgb(245, 245, 220);
+    
+
+}
+
+.header td:last-child {
+    border-top-right-radius: 0.5rem;
+  
+  }
+
+
+
+
 
 

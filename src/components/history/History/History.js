@@ -1,7 +1,6 @@
 import { useState,useEffect,Fragment} from "react";
 import DateSelector from "../Date/DateSelector";
 import DisplayRecords from "../Table/DisplayRecords";
-import RecordHeader from "../Table/RecordHeader";
 import { useSelector } from "react-redux";
 import { allReadings } from "../../../features/readingSlice";
 import classes from "./History.module.css";
@@ -45,8 +44,7 @@ const History = () => {
     <Fragment>
       {emptyData? <div className={classes.history}>
       <table>
-        <tbody>
-          <RecordHeader></RecordHeader>
+        <tbody className={classes.tbody}>
           <DisplayRecords SelectedDate = {selectedDate} OnNavigate ={registerClick} NavButtonClicked={buttonClicked}></DisplayRecords>
         </tbody>
       </table>
