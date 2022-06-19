@@ -1,136 +1,122 @@
 import { Fragment, useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { recordsPerPage } from "../../../utils";
-import { allReadings,dataset, readingDates } from '../../../features/readingSlice';
+import {
+
+  dataset,
+  readingDates,
+} from "../../../features/readingSlice";
 import classes from "./DisplayRecords.module.css";
 
-
 const DisplayRecords = (props) => {
-  const dataSet = useSelector(dataset)
-  const allDates =useSelector(readingDates)
+  const dataSet = useSelector(dataset);
+  const allDates = useSelector(readingDates);
+
   const [recordDisplayed, setrecordDisplayed] = useState([]);
-  const [currentPageIndex, setCurrentPageIndex] = useState();
-  const selectedDate = props.SelectedDate;
-  const registerClick = props.OnNavigate
-  const clickedButton = props.NavButtonClicked
-  const userRecord =  dataSet.filter(element => Object.keys(element)  != 'date')
-  // console.log(userRecord)
-  
+  const [currentPageIndex, setCurrentPageIndex] = useState([]);
+  const selectedDate = props.SelectedDate
+  const registerClick = props.OnNavigate;
+  const clickedButton = props.NavButtonClicked;
+  const userRecord = dataSet.filter(
+    (element) => Object.keys(element) != "date"
+  );
 
-  //function to slice portion of  record to display
-  const slicedRecords = (startIndex, endIndex) => {
-
-    // const allRecords =  dataSet.filter(element => Object.keys(element)  !== 'date');
-    const slicedrecord = userRecord.slice(startIndex, endIndex);
-
-    setCurrentPageIndex([+startIndex,+endIndex])
-    return  slicedrecord
-  };
-
-
+ 
   //display last page
   useEffect(() => {
-    if(!dataSet){
-      return
+    if (!dataSet) {
+      return;
     }
-    
+    const startIndex = allDates.length - recordsPerPage;
+    const endIndex = allDates.length;
+    let allRecordArr = [];
+    setCurrentPageIndex([startIndex, endIndex]);
 
-    const startIndex = userRecord.length - recordsPerPage
-    const endIndex = userRecord.length
+    userRecord.map((element) => {
+      allRecordArr.push(Object.entries(element));
+    });
 
-    console.log(startIndex,endIndex);
-   
-    setrecordDisplayed(slicedRecords(startIndex,endIndex))
-  },[dataSet])
 
+
+    setrecordDisplayed(allRecordArr);
+  }, [dataSet]);
 
   // function for navigating through records
-  useEffect( () => {
-
-
-    if (clickedButton === "next" ) {
-
-  
+  useEffect(() => {
+    if (clickedButton === "next") {
       const startIndex = currentPageIndex[1];
-      const endIndex = (currentPageIndex[1]) + recordsPerPage
+      const endIndex = currentPageIndex[1] + recordsPerPage;
 
-      
       //last page stop clause
-      if(currentPageIndex[1] >= userRecord.length){
-        return
+      if (currentPageIndex[1] >= allDates.length) {
+
+        return;
       }
 
-      setrecordDisplayed(slicedRecords(startIndex, endIndex))
-   
-
-      
+      setCurrentPageIndex([startIndex, endIndex]);
     } else if (clickedButton === "previous") {
-
-      const startIndex = currentPageIndex[0] - recordsPerPage
-      const endIndex = currentPageIndex[0]
+      const startIndex = currentPageIndex[0] - recordsPerPage;
+      const endIndex = currentPageIndex[0];
 
 
       //first page stop clause
-      if(currentPageIndex[0] === 0){
-        return
+      if (currentPageIndex[0] === 0) {
+        return;
       }
 
-      setrecordDisplayed(slicedRecords(startIndex, endIndex))
-
+      setCurrentPageIndex([startIndex, endIndex]);
 
       //display first page if slice is not up to a page
-      if(currentPageIndex[0] < recordsPerPage){
-        setCurrentPageIndex([0,8])
-        setrecordDisplayed(slicedRecords(0, recordsPerPage))
+      if (currentPageIndex[0] < recordsPerPage) {
+        setCurrentPageIndex([0, recordsPerPage]);
       }
-
-
     }
-  },[registerClick,clickedButton])
- 
+  }, [registerClick, clickedButton, currentPageIndex]);
 
 
-
-//function for searching from a selected date records
+  //function for searching from a selected date records
   useEffect(() => {
-    const recordIndex = userRecord.findIndex(
-      (record) => record.date === selectedDate
+
+    console.log(selectedDate);
+    console.log(allDates);
+    
+    const recordIndex = allDates.findIndex(
+      (record) => record === selectedDate
     );
-    const lastPageIndex =  userRecord.length - recordsPerPage
 
+    console.log(recordIndex);
 
-    if (recordIndex === -1 || recordIndex >= lastPageIndex) {
+    
+    const lastPageIndex = allDates.length - recordsPerPage;
 
-      return
-     
+    if (recordIndex === -1 ) {
+      return;
     } else {
       const startIndex = recordIndex;
       const endIndex = recordIndex + recordsPerPage;
-
-
-       setrecordDisplayed(slicedRecords(startIndex, endIndex))
+      setCurrentPageIndex([startIndex, endIndex]);
     }
   }, [selectedDate]);
-
-// console.log(recordDisplayed);
-
-
-
 
 
   return (
     <Fragment>
-      <tr className={classes.header}>
-      <th>DATE</th>
-      {allDates.flat().map((data, index) => (
-        <td key={index}>{data.replace('-','/')}</td>
-      ))}
-    </tr>
-      {recordDisplayed.map((record, index) => {
+      <tr className={classes.header} >
+        <th >Date</th>
+        {allDates.slice(currentPageIndex[0], currentPageIndex[1]).map((date, index) => {
+          return <td  key={index}>{date.slice(-5).replace('-','/')}</td>;
+          
+        })}
+      </tr>
+
+      {recordDisplayed.flat().map((record, index) => {
         return (
           <tr className={classes.data} key={index}>
-            <th>{Object.keys(record)}</th>
-            {Object.values(record).flat().map((data, index) => {
+            <th  key={index}>{record[0].replace("_", " ")}</th>
+            {record[1]
+              .flat()
+              .slice(currentPageIndex[0], currentPageIndex[1])
+              .map((data,index) => {
                 return <td key={index}>{data}</td>;
               })}
           </tr>

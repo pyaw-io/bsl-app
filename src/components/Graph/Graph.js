@@ -44,10 +44,12 @@ const options = {
 const Graph = () => {
   const readingData = useSelector(dataset)
   const [emptyData,setEmptyData] = useState(false);
-  const labels = useSelector(readingDates);
+  const allDates = useSelector(readingDates);
+  const labels = allDates.map(date => date.slice(-5).replace('-','/'))
   const colours = ['rgb(254, 217, 2)','rgb(4, 3, 255)','rgb(2, 227, 241)','rgb(162, 63, 1)','rgb(202, 92, 241)','rgb(255, 160, 2)','rgb(19, 189, 112)'
 ]
   let dataSet = [];
+  
 
   useEffect(() => {
 

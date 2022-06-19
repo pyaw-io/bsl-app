@@ -17,7 +17,7 @@ export const readingSlice = createSlice({
       let readingKeys;
       let initialDataset = [];
 
-      const datesArray = payload.map((reading) => reading.date.slice(-5));
+      const datesArray = payload.map((reading) => reading.date);
 
       if (payload.length > 0) {
         readingKeys = Object.keys(payload[0]).filter(element => element !== 'date')
@@ -219,7 +219,7 @@ export const readingSlice = createSlice({
         return
       } else {
         //if its a new date, addit to the date array and sorl all the date correctly from oldest to newest
-        const dataArray = [...state.readingDates, (payload.date).slice(-5)].sort(function (
+        const dataArray = [...state.readingDates].sort(function (
           a,
           b
         ) {
