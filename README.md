@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+BSL
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Background
+The idea for this project was borne out of the need to get an easier was to monitor the blood sugar levels of people living with diabeties. As some who knows a few people who carry around blood sugar measuring devices and a notepads for recordings, I always wondered why they don't get an app to record the measurement and also make it easier to track their sugar levels more accurately. After a discussion with a friend with diabetes and an offer to get him an app that could replace his old notepad used for recording the figures, I set out to search for such an app. AFter hours of searching, I realised why they still used the notepads, most of the apps were general diabetic management app which concentrated on other important areas of managing diabeties like taking insulin,exercise and food choises. The apps that provided the option to record sugar levels we usually addons to these apps and didn't provide an easier wasy to record and monitor the measured level. This challenge prompted me to create this app, which not only records the sugar levels but create an graph out of the data received to present the user with a general idea on  their sugar levels over a period of time.
 
-## Available Scripts
+What Can the App Do
+- users can instantly record their blood sugar levels anytime on any smart device
+- users can set target for particular period to compare witha actual level they record
+- on larger screen devices like tablets and computer, users are presented with line graphs of their recordings over time.
+- user can backdate new recording incase they forgot to record any measurement the same day
 
-In the project directory, you can run:
 
-### `npm start`
+What Tech Stack was Used
+The app was built using react for the frontend for these reasons; 
+- To create a smooth and fast user experience
+- To prevent unecessary reloading of the whole app anytime the state changes
+- To make it easier to maintain and add new features as they become necessary
+ React-redux was used fro the state management
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The backend of the app was build on firebase
+- Firebase from google already has an advanced system in place to manage user authentication and app data
+- I chose firebase to create a lightweight user authentication and data management solution without sacrificing data security 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+What Can be Inporoved
+- Addition of option for user to share record with others for examaple, medical professionals 
