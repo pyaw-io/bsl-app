@@ -55,4 +55,32 @@
    
 }
 
+@media (max-width: 1000px) {
+
+
+
+  
+
+}
+
+
+@media (max-width: 600px) {
+
+    .records{
+        width: 100%;
+    }
+
+
+    .record_form  input,select{
+     height: 2rem;
+     
+    
+        
+    }
+ 
+
+
+}
+
+
 

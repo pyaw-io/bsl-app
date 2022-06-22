@@ -1,6 +1,6 @@
 .data{
     width: 2%;
-  
+    
     border-left: solid 2px beige;
     
 }
@@ -35,3 +35,55 @@
     border-top-left-radius: 0.5rem;
   
   }
+
+  @media (max-width: 1000px) {
+
+
+
+
+  
+
+}
+
+
+@media (max-width: 600px) {
+    .data{
+        width: .5%;
+      
+        border-left: solid 2px beige;
+        
+    }
+
+    .header {
+     
+        padding: .5rem;
+        text-align: center;
+        white-space: wrap;
+        background-color: rgb(36, 36, 48);
+        color: rgb(245, 245, 220);
+    
+    }
+    .header td {
+        width: .3rem;
+        padding: .5rem .1rem;
+        /* outline:solid 2px red; */
+      
+      }
+
+    .data td{
+        width: .3rem;
+        text-align: center;
+       
+    }
+
+    .header th {
+        width: .5rem;
+      
+      }
+    
+    
+
+  
+
+}
+

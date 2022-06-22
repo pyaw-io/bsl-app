@@ -19,3 +19,26 @@
   
   }
 
+
+  /* @media (max-width: 1000px) {
+
+
+
+
+  
+
+} */
+
+
+@media (max-width: 600px) {
+    .history{
+      width: 90%;
+      align-self: center;
+
+   }
+
+
+
+}
+
+

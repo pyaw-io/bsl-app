@@ -28,7 +28,6 @@ function AddTarget(props) {
     
 
     if (isNaN(targetInput) || targetInput === "") {
-      console.log('in');
       setInputIsValid(`Enter a valid number`);
 
       return;

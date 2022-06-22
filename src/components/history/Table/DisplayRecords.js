@@ -76,18 +76,14 @@ const DisplayRecords = (props) => {
 
   //function for searching from a selected date records
   useEffect(() => {
-
-    console.log(selectedDate);
-    console.log(allDates);
     
     const recordIndex = allDates.findIndex(
       (record) => record === selectedDate
     );
 
-    console.log(recordIndex);
 
     
-    const lastPageIndex = allDates.length - recordsPerPage;
+    // const lastPageIndex = allDates.length - recordsPerPage;
 
     if (recordIndex === -1 ) {
       return;
@@ -112,7 +108,7 @@ const DisplayRecords = (props) => {
       {recordDisplayed.flat().map((record, index) => {
         return (
           <tr className={classes.data} key={index}>
-            <th  key={index}>{record[0].replace("_", " ")}</th>
+            <th  key={index}>{ recordsPerPage < 8? (record[0].split('_'))[0].charAt(0) + (record[0].split('_'))[1].charAt(0): record[0].replace("_", " ")}</th>
             {record[1]
               .flat()
               .slice(currentPageIndex[0], currentPageIndex[1])

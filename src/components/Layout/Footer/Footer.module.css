@@ -5,3 +5,22 @@
     padding: 1rem ;
     justify-content: center;
 }
+
+@media (max-width: 1000px) {
+
+
+
+  
+
+}
+
+
+@media (max-width: 600px) {
+    .footer{
+        width: 100%;
+
+    }
+ 
+
+
+}

@@ -6,7 +6,6 @@
     align-items: center;
 }
 .header_menu{
-    margin-right: 4rem;
     height:  100%;
     width: 25%;
     display: flex;
@@ -25,3 +24,23 @@
   
    
   }
+
+  @media (max-width: 1000px) {
+
+
+
+  
+
+}
+
+
+@media (max-width: 600px) {
+
+    .header{
+        width: 100%;
+        margin: 0;
+    }
+  
+
+
+}

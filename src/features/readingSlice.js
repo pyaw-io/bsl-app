@@ -13,7 +13,6 @@ export const readingSlice = createSlice({
   initialState,
   reducers: {
     setReadings: (state, { payload }) => {
-      // console.log(payload);
       let readingKeys;
       let initialDataset = [];
 
@@ -21,7 +20,6 @@ export const readingSlice = createSlice({
 
       if (payload.length > 0) {
         readingKeys = Object.keys(payload[0]).filter(element => element !== 'date')
-        // console.log(readingKeys);
        
 
         readingKeys.forEach((period) => {

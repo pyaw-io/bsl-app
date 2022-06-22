@@ -22,8 +22,6 @@ const Header = () => {
             <h1>BSL</h1>
             <div className={classes.header_menu}>
             
-                <Button>Profile</Button>
-                <Button>Account</Button>
                 <Button onClick={logoutHandler}>Logout</Button>
             </div>
         </div>

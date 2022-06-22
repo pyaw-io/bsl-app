@@ -1,4 +1,10 @@
-export const recordsPerPage = 8
+export const getWindowSize = () => {
+    const {innerWidth, _} = window;
+    return innerWidth;
+  }
+
+
+export const recordsPerPage = getWindowSize() > 600? 8 : 6
 
 export const random_rgb = () => {
     const o = Math.round, r = Math.random, s = 255;

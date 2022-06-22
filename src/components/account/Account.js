@@ -31,7 +31,6 @@ function Account() {
       dispatch(setTarget(docSnap.data().target));
     } else {
 
-      console.log("No such document!");
       throw new Error({ message: "No such document!" });
     }
     }
@@ -80,10 +79,10 @@ function Account() {
 
   return (
     <div className={classes.homepage}>
-      <Graph />
+      <Graph/>
       <Records />
-      <History />
-      <Target />
+      <History/>
+      <Target/>
     </div>
   );
 }
