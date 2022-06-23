@@ -1,4 +1,4 @@
-export const getWindowSize = () => {
+export const getWindowSize = async () => {
     const {innerWidth, _} = window;
     return innerWidth;
   }

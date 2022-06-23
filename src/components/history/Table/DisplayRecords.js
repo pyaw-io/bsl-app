@@ -39,7 +39,7 @@ const DisplayRecords = (props) => {
 
 
     setrecordDisplayed(allRecordArr);
-  }, [dataSet]);
+  }, [dataSet,selectedDate]);
 
   // function for navigating through records
   useEffect(() => {
@@ -82,8 +82,9 @@ const DisplayRecords = (props) => {
     );
 
 
+
     
-    // const lastPageIndex = allDates.length - recordsPerPage;
+    const lastPageIndex = allDates.length - recordsPerPage;
 
     if (recordIndex === -1 ) {
       return;

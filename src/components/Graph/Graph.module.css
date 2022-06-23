@@ -28,7 +28,6 @@
 @media (max-width: 600px) {
     .graph{
       display: none;
-      /* outline: sollid 3px red; */
       width: 50%;
     
     }
