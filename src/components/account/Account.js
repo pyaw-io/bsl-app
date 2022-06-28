@@ -21,7 +21,7 @@ function Account() {
     const getInitialData =async() => {
 
 
-      const docRef = doc(db, "users", `${auth.currentUser.uid}`);
+    const docRef = doc(db, "users", `${auth.currentUser.uid}`);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
