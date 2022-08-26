@@ -131,7 +131,6 @@ export const readingSlice = createSlice({
         state.readings = newReadings;
       }
 
-      /////////////////////////////////////////////////////////
 
       //add new reading and date to dataset and reading date arrays
 

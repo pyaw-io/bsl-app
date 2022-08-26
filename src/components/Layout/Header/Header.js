@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import Button from '../../ui/Button'
 import { auth } from '../../../firebase'
 
-const Header = () => {
+const Header = ({isLoggedIn}) => {
     const dispatch =  useDispatch()
 
         const logoutHandler = () => {
@@ -21,8 +21,9 @@ const Header = () => {
         <div className={classes.header}>
             <h1>BSL</h1>
             <div className={classes.header_menu}>
+                {isLoggedIn && 
             
-                <Button onClick={logoutHandler}>Logout</Button>
+                <Button onClick={logoutHandler}>Logout</Button>}
             </div>
         </div>
 

@@ -1,17 +1,14 @@
 .header{
-    height: 5%;
     display: flex;
-    padding: 1rem ;
+    padding: .5rem ;
     justify-content: space-between;
-    align-items: center;
 }
+
 .header_menu{
     height:  100%;
     width: 25%;
-    display: flex;
-    
-    justify-content: space-around;
-    align-items: center;
+    display: flex;    
+    justify-content: flex-end;
 
 }
 
@@ -25,22 +22,3 @@
    
   }
 
-  @media (max-width: 1000px) {
-
-
-
-  
-
-}
-
-
-@media (max-width: 600px) {
-
-    .header{
-        width: 100%;
-        margin: 0;
-    }
-  
-
-
-}

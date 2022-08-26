@@ -1,26 +1,11 @@
 .footer{
     color: rgb(121, 119, 119);
-    height: 5%;
-    display: flex;
-    padding: 1rem ;
-    justify-content: center;
-}
+   
+    margin-top: 2rem;
+   
 
-@media (max-width: 1000px) {
-
-
-
+   
+    text-align: center;
   
-
 }
 
-
-@media (max-width: 600px) {
-    .footer{
-        width: 100%;
-
-    }
- 
-
-
-}

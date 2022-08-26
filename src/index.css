@@ -7,9 +7,7 @@
 
 body {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  overflow-x: hidden;
   font-size: small;
-  height: fit-content;
   
  
 }
@@ -21,44 +19,25 @@ code {
 
 
 
-main{
-  height: 100vh;
-  width: 100vw;
-  
- 
-}
+
 
 input{
   border: solid 1px rgb(90, 89, 89);
   border-radius: 5px;
-  text-align: center;
   height: 1.5rem;
   
 
   
 }
 
-@media (max-width: 1000px) {
-
-
-
-  
-
-}
-
-
-@media (max-width: 600px) {
-  main{
-    width: 100%;
-    height: fit-content;
-    margin: 0;
-   
-  }
+.app{
+  height:  100vh;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
  
-
-
 }
-
 
 
 

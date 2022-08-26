@@ -49,7 +49,7 @@ function App(props) {
       <header>
         
 
-        {!isLoggedIn?'': <Header/>}
+        <Header isLoggedIn={isLoggedIn}/>
       </header>
       {loading? <Loading /> : 
       
